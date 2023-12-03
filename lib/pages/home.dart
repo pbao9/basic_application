@@ -64,22 +64,6 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) {
                   return Container(
                     height: 100,
-                    decoration: BoxDecoration(
-                      color: popularDiets[index].boxIsSelected
-                          ? Colors.white
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: popularDiets[index].boxIsSelected
-                          ? [
-                              BoxShadow(
-                                  color:
-                                      const Color(0xff1D1617).withOpacity(0.7),
-                                  offset: const Offset(0, 10),
-                                  blurRadius: 40,
-                                  spreadRadius: 0),
-                            ]
-                          : [],
-                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -101,7 +85,11 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Text(
-                              '${popularDiets[index].level} | ${popularDiets[index].duration} | ${popularDiets[index].calorie}',
+                              popularDiets[index].level +
+                                  ' | ' +
+                                  popularDiets[index].duration +
+                                  ' | ' +
+                                  popularDiets[index].calorie,
                               style: const TextStyle(
                                   color: Color(0xff7B6F72),
                                   fontSize: 13,
@@ -118,6 +106,22 @@ class _HomePageState extends State<HomePage> {
                           ),
                         )
                       ],
+                    ),
+                    decoration: BoxDecoration(
+                      color: popularDiets[index].boxIsSelected
+                          ? Colors.white
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: popularDiets[index].boxIsSelected
+                          ? [
+                              BoxShadow(
+                                  color:
+                                      const Color(0xff1D1617).withOpacity(0.7),
+                                  offset: const Offset(0, 10),
+                                  blurRadius: 40,
+                                  spreadRadius: 0),
+                            ]
+                          : [],
                     ),
                   );
                 },
@@ -146,7 +150,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         const SizedBox(height: 15),
-        SizedBox(
+        Container(
           height: 240,
           child: ListView.separated(
             itemBuilder: (context, index) {
@@ -171,7 +175,11 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Text(
-                          '${diets[index].level} | ${diets[index].duration} | ${diets[index].calorie}',
+                          diets[index].level +
+                              ' | ' +
+                              diets[index].duration +
+                              ' | ' +
+                              diets[index].calorie,
                           style: const TextStyle(
                             color: Color(0xff7B6F72),
                             fontSize: 13,
@@ -183,6 +191,17 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       height: 45,
                       width: 130,
+                      child: Center(
+                        child: Text(
+                          'View',
+                          style: TextStyle(
+                              color: diets[index].viewIsSelected
+                                  ? Colors.white
+                                  : const Color(0xffC58BF2),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
@@ -195,17 +214,6 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'View',
-                          style: TextStyle(
-                              color: diets[index].viewIsSelected
-                                  ? Colors.white
-                                  : const Color(0xffC58BF2),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600),
-                        ),
                       ),
                     ),
                   ],
@@ -245,7 +253,7 @@ class _HomePageState extends State<HomePage> {
         const SizedBox(
           height: 15,
         ),
-        SizedBox(
+        Container(
           height: 120,
           child: ListView.separated(
             itemCount: categories.length,
@@ -315,7 +323,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset('assets/icons/Search.svg'),
           ),
-          suffixIcon: SizedBox(
+          suffixIcon: Container(
             width: 100,
             child: IntrinsicHeight(
               child: Row(
@@ -362,14 +370,14 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           margin: const EdgeInsets.all(10),
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: const Color(0xffF7F8F8),
-              borderRadius: BorderRadius.circular(10)),
           child: SvgPicture.asset(
             'assets/icons/Arrow - Left 2.svg',
             height: 20,
             width: 20,
           ),
+          decoration: BoxDecoration(
+              color: const Color(0xffF7F8F8),
+              borderRadius: BorderRadius.circular(10)),
         ),
       ),
       actions: [
@@ -379,14 +387,14 @@ class _HomePageState extends State<HomePage> {
             margin: const EdgeInsets.all(10),
             alignment: Alignment.center,
             width: 37,
-            decoration: BoxDecoration(
-                color: const Color(0xffF7F8F8),
-                borderRadius: BorderRadius.circular(10)),
             child: SvgPicture.asset(
               'assets/icons/dots.svg',
               height: 5,
               width: 5,
             ),
+            decoration: BoxDecoration(
+                color: const Color(0xffF7F8F8),
+                borderRadius: BorderRadius.circular(10)),
           ),
         ),
       ],
